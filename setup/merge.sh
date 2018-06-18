@@ -38,7 +38,10 @@ cpif ${dir}/global/.global_gitconfig ${dir}/merged/.gitconfig
 if [ -f ${dir}/local/.local_gitconfig ]; then
     cat ${dir}/local/.local_gitconfig >> ${dir}/merged/.gitconfig
 fi
-
+cpif ${dir}/global/.global_gitignore ${dir}/merged/.gitignore
+if [ -f ${dir}/local/.local_gitignore ]; then
+    cat ${dir}/local/.local_gitignore >> ${dir}/merged/.gitignore
+fi
 
 # Merge experiments
 if [ -f ${dir}/experimental/merge.sh ]; then
@@ -51,4 +54,5 @@ if [ -z `ask "Link merged directory/?" Y` ]; then
     ask "Link bashrc/?" Y && ln -sfn ${dir}/merged/.bashrc ${HOME}/.bashrc && ln -sfn ${dir}/merged/.bash_aliases ${HOME}/.bash_aliases
     ask "Link vimrc/?" Y && ln -sfn ${dir}/merged/.vimrc ${HOME}/.vimrc
     ask "Link gitconfig/?" Y && ln -sfn ${dir}/merged/.gitconfig ${HOME}/.gitconfig
+    ask "Link gitignore/?" Y && ln -sfn ${dir}/merged/.gitignore ${HOME}/.gitignore
 fi

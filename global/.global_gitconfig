@@ -10,3 +10,5 @@
     default = simple
 [merge]
     tool = vimdiff
+[core]
+	excludesfile = /Users/bionicpi/.gitignore
