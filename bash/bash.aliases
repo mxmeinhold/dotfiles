@@ -1,0 +1,6 @@
+# Bash Aliases
+alias ls='ls -GCF'
+alias ll='ls -alhF'
+alias la='ls -A'
+alias l='ls'
+

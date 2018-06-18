@@ -1,4 +1,4 @@
-source ~/.profile/prompt/colour.sh
+source ~/.prompt/colour.sh
 
 
 # $1= text, $2= foreground, $3= background, $4= bg colour as foreground, $5= next bg colour

@@ -1,0 +1,19 @@
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[push]
+    default = simple
+[merge]
+    tool = vimdiff
+[core]
+	excludesfile = /Users/bionicpi/.gitignore
+[user]
+	email = mxmeinhold@gmail.com
+	name = Max Meinhold
+	signingkey = 72E05836F8252405
+

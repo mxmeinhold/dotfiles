@@ -1,0 +1,5 @@
+# Prompt sourcing
+if [ -f ~/.prompt/prompt.sh ]; then
+    source ~/.prompt/prompt.sh
+fi
+
