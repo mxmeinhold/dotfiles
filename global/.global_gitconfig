@@ -1,0 +1,12 @@
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[push]
+    default = simple
+[merge]
+    tool = vimdiff
