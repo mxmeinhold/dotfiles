@@ -15,6 +15,7 @@ if [ -f "${dir}/local/update.sh" ]; then
 fi
 
 # Merge
+mkdir ${dir}/merged
 rm -rf ${dir}/merged/bak
 mkdir -p ${dir}/merged/bak
 mv ${dir}/merged/* ${dir}/merged/bak
@@ -41,11 +42,11 @@ fi
 
 # Merge experiments
 if [ -f ${dir}/experimental/merge.sh ]; then
-    ask "Use experimental/?" N && ${dir}/experimental/merge.sh
+    ask "Use experimental/?" N && ${dir}/experimental/merge.sh ${dir}
 fi
 
 # Link
-if [ `ask "Link merged directory/?" Y` ]; then
+if [ -z `ask "Link merged directory/?" Y` ]; then
     ln -sfn ${dir}/merged ${HOME}/.dotfiles.merged
     ask "Link bashrc/?" Y && ln -sfn ${dir}/merged/.bashrc ${HOME}/.bashrc && ln -sfn ${dir}/merged/.bash_aliases ${HOME}/.bash_aliases
     ask "Link vimrc/?" Y && ln -sfn ${dir}/merged/.vimrc ${HOME}/.vimrc
