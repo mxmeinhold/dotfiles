@@ -1,6 +1,6 @@
 # Bash Aliases
 alias ls='ls -GCF'
-alias ll='ls -alhF'
+alias ll='ls -AlhF'
 alias la='ls -A'
 alias l='ls'
 

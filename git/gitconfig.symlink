@@ -11,4 +11,4 @@
 [merge]
     tool = vimdiff
 [core]
-	excludesfile = /Users/bionicpi/.gitignore
+    excludesfile = ~/.gitignore
