@@ -12,3 +12,5 @@
     tool = vimdiff
 [core]
     excludesfile = ~/.gitignore
+[alias]
+    graph = log --oneline --graph --all
