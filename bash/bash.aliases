@@ -4,3 +4,5 @@ alias ll='ls -AlhF'
 alias la='ls -A'
 alias l='ls'
 
+# Python
+alias venv='python3 -m virtualenv'
