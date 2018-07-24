@@ -17,3 +17,6 @@ Thumbs.db
 # General
 log/
 *.log
+
+# vim
+*.swp
