@@ -1,11 +1,9 @@
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = gpg
+    program = gpg
 [color]
-    diff = auto
-    status = auto
-    branch = auto
+    ui = auto
 [push]
     default = simple
 [merge]
