@@ -20,3 +20,8 @@ log/
 
 # vim
 *.swp
+.*.swp
+
+# Python
+*.pyc
+.*.pyc
