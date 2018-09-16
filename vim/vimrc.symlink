@@ -18,7 +18,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Reference and code examples from vim
 Plugin 'dbeniamine/cheat.sh-vim'
+
+" Git dif marks in the gutter
+Plugin 'airblade/vim-gitgutter'
+
+" Live markdown preview
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,3 +75,9 @@ color slate
 
 " cht.sh conf
 let mapleader=" "
+
+" Set update time to 100ms so git diff markers are live updated
+set updatetime=100
+
+" Set live markdown to use git flavouring
+let vim_markdown_preview_github=1
