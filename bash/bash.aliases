@@ -5,4 +5,5 @@ alias la='ls -A'
 alias l='ls'
 
 # Python
-alias venv='python3 -m virtualenv'
+alias venv='python3 -m virtualenv venv'
+alias activate='source ./venv/bin/activate'
