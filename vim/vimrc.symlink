@@ -19,13 +19,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Reference and code examples from vim
-Plugin 'dbeniamine/cheat.sh-vim'
+"Plugin 'dbeniamine/cheat.sh-vim'
 
 " Git dif marks in the gutter
 Plugin 'airblade/vim-gitgutter'
 
 " Live markdown preview
-Plugin 'JamshedVesuna/vim-markdown-preview'
+"Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,8 +48,25 @@ au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 syntax on "enables syntax highlighting
 set nu "enables line numbers
-set tabstop=4 "sets \t length to 4 spaces
-set softtabstop=4 "sets the tab key to input 4 spaces and backspace to remove 4
+
+if &filetype ==# 'asm'
+    " 8 spaces for cocs
+    set tabstop=8
+    set softtabstop=8
+    set shiftwidth=8
+else
+    " sets \t length to 4 spaces
+    set tabstop=4 
+    " sets the tab key to input 4 spaces and backspace to remove 4
+    set softtabstop=4
+    " handle double indentation
+    set shiftwidth=4
+endif
+
+" in makefiles, don't expand tabs to spaces,
+" since actual tab characters are needed
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
 set expandtab "Tabs become spaces
 filetype indent on "reads standard indentation by file type
 " retab
@@ -64,9 +81,6 @@ nnoremap E $
 
 nnoremap $ <nop>
 nnoremap ^ <nop>
-
-" handle double indentation
-set shiftwidth=4
 
 color slate
 
