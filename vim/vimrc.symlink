@@ -49,27 +49,21 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 syntax on "enables syntax highlighting
 set nu "enables line numbers
 
-if &filetype ==# 'asm'
-    " 8 spaces for cocs
-    set tabstop=8
-    set softtabstop=8
-    set shiftwidth=8
-    set colorcolumn=80
-else
-    " sets \t length to 4 spaces
-    set tabstop=4 
-    " sets the tab key to input 4 spaces and backspace to remove 4
-    set softtabstop=4
-    " handle double indentation
-    set shiftwidth=4
-endif
+" sets \t length to 4 spaces
+set tabstop=4 
+" sets the tab key to input 4 spaces and backspace to remove 4
+set softtabstop=4
+" handle double indentation
+set shiftwidth=4
+set expandtab "Tabs become spaces
+
+" in .asm, set 8 space tabs and a line length warning for COCS
+autocmd FileType asm set tabstop=8 softtabstop=8 shiftwidth=9 colorcolumn=80
 
 " in makefiles, don't expand tabs to spaces,
 " since actual tab characters are needed
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-set expandtab "Tabs become spaces
-filetype indent on "reads standard indentation by file type
 " retab
 
 " move vertically by visual line
