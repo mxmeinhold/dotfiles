@@ -58,7 +58,7 @@ set shiftwidth=4
 set expandtab "Tabs become spaces
 
 " in .asm, set 8 space tabs and a line length warning for COCS
-autocmd FileType asm set tabstop=8 softtabstop=8 shiftwidth=9 colorcolumn=80
+autocmd FileType asm set tabstop=8 softtabstop=8 shiftwidth=8 colorcolumn=80
 
 " in makefiles, don't expand tabs to spaces,
 " since actual tab characters are needed
