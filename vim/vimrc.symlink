@@ -5,42 +5,7 @@
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 
-
-" Start plugin management configuration
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" Reference and code examples from vim
-"Plugin 'dbeniamine/cheat.sh-vim'
-
-" Git dif marks in the gutter
-Plugin 'airblade/vim-gitgutter'
-
-" Live markdown preview
-"Plugin 'JamshedVesuna/vim-markdown-preview'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+filetype plugin indent on
 
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
@@ -64,29 +29,25 @@ autocmd FileType asm set tabstop=8 softtabstop=8 shiftwidth=8 colorcolumn=80
 " since actual tab characters are needed
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-" retab
 
 " move vertically by visual line
 nnoremap j gj 
 nnoremap k gk
+vnoremap j gj 
+vnoremap k gk
 
 "remap B and E to move to beginning/end of line, and unbind the original keys
 nnoremap B ^
 nnoremap E $
+vnoremap B ^
+vnoremap E $
 
 nnoremap $ <nop>
 nnoremap ^ <nop>
+vnoremap $ <nop>
+vnoremap ^ <nop>
 
 color slate
 
 " Show nonprinting charachters
 " set list
-
-" cht.sh conf
-let mapleader=" "
-
-" Set update time to 100ms so git diff markers are live updated
-set updatetime=100
-
-" Set live markdown to use git flavouring
-let vim_markdown_preview_github=1
