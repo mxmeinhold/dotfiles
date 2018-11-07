@@ -7,6 +7,9 @@ if [ -d symlink ]; then
 fi
 mkdir symlink
 
+# cat prompt files
+cat prompt/colour.sh prompt/prompt.sh > prompt/promptrc.symlink
+
 # Main Configs
 for filename in */*.symlink; do
     cp $filename symlink/
@@ -35,5 +38,3 @@ for filename in symlink/*.aliases; do
     cat $filename >> symlink/.bash_aliases
     rm $filename
 done
-
-ln -sfn ${dir}/prompt ~/.prompt

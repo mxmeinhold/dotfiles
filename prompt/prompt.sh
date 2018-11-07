@@ -1,4 +1,6 @@
-source ~/.prompt/colour.sh
+##############################
+### Main Prompt Formatting ###
+##############################
 
 # $1= text, $2= foreground, $3= background, $4= next bg colour
 function prompt_section {
