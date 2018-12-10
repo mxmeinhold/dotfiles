@@ -2,7 +2,7 @@ shopt -s expand_aliases
 # Bash Aliases
 alias ls='ls -GCF'
 alias la='ls -A'
-alias ll='la -l'
+alias ll='la -lh'
 alias l='ls'
 
 # Python
