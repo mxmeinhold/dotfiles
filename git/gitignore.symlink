@@ -25,3 +25,4 @@ log/
 # Python
 *.pyc
 .*.pyc
+venv
