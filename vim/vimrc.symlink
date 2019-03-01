@@ -29,6 +29,9 @@ autocmd FileType asm set tabstop=8 softtabstop=8 shiftwidth=8 colorcolumn=80
 " since actual tab characters are needed
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
+" in javascript, set 2 space tabs
+autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2 colorcolumn=80
+
 
 " move vertically by visual line
 nnoremap j gj 
