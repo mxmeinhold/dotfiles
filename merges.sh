@@ -31,6 +31,10 @@ for filename in */*.aliases; do
     fi
 done
 
+# Vim plugins
+./vimplugins.sh
+ln -sfn ${dir}/symlink/plugin ~/.vim/
+
 mv symlink/bash.aliases symlink/.bash_aliases
 ln -sfn ${dir}/symlink/.bash_aliases ~/.bash_aliases
 
