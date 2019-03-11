@@ -1,5 +1,12 @@
 #!/bin/bash
 
+INFO="\e[1m\e[93m"
+RESET="\e[0m"
+
+function info {
+    echo "${INFO}---> $1$RESET"
+}
+
 dir=`pwd`
 
 if [ -d symlink ]; then
@@ -11,6 +18,7 @@ mkdir symlink
 cat prompt/colour.sh prompt/prompt.sh > prompt/promptrc.symlink
 
 # Main Configs
+echo -e $(info "Linking primary config files")
 for filename in */*.symlink; do
     cp $filename symlink/
     if [ -f ${filename}.local ]; then
@@ -31,14 +39,28 @@ for filename in */*.aliases; do
     fi
 done
 
-# Vim plugins
+# Vim extras
+echo -e $(info "Configuring Vim Extras")
 ./vimplugins.sh
-ln -sfn ${dir}/symlink/plugin ~/.vim/
+cd ${dir}/vim/vim.d
+for vim_dir in *; do
+    mkdir -p $dir/symlink/.vim/$vim_dir
+    cp $vim_dir/* $dir/symlink/.vim/$vim_dir/
+done
+cd $dir
 
+cd symlink/.vim
+for vim_dir in *; do
+    if [ -f ~/.vim/$vim_dir ] && [ ! -L ~/.vim/$vim_dir ]; then
+        mv ~/.vim/$vim_dir ~/.vim/${vim_dir}.d.bak
+    fi
+    ln -sfn ${dir}/symlink/.vim/$vim_dir ~/.vim/$vim_dir
+done
+cd $dir
+
+echo -e $(info "Linking bash_aliases")
 mv symlink/bash.aliases symlink/.bash_aliases
 ln -sfn ${dir}/symlink/.bash_aliases ~/.bash_aliases
 
-for filename in symlink/*.aliases; do
-    cat $filename >> symlink/.bash_aliases
-    rm $filename
-done
+cat symlink/*.aliases >> symlink/.bash_aliases
+rm symlink/*.aliases
