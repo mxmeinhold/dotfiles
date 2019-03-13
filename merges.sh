@@ -64,3 +64,7 @@ ln -sfn ${dir}/symlink/.bash_aliases ~/.bash_aliases
 
 cat symlink/*.aliases >> symlink/.bash_aliases
 rm symlink/*.aliases
+
+# i3lock script (copied to preserve -x)
+mkdir -p ~/.local/bin
+cp -f i3/fuzzy_lock.sh ~/.local/bin/
