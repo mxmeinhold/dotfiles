@@ -54,3 +54,12 @@ color slate
 
 " Show nonprinting charachters
 " set list
+
+" Plugin config
+"
+" Lightline
+set laststatus=2
+set noshowmode
+
+" AutoPairs
+let g:AutoPairsFlyMode = 1
