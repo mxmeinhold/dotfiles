@@ -87,8 +87,9 @@ endif
 " Plugin config
 "
 " Lightline
-set laststatus=2
-set noshowmode
+set laststatus=2 
+set noshowmode      " We don't need to show --INSERT--, since lightline shows it
+set ttimeoutlen=50  " Faster updating
 
 " AutoPairs
-let g:AutoPairsFlyMode = 1
+let g:AutoPairsFlyMode = 1 " Enable fly mode
