@@ -24,6 +24,9 @@ PLUGINS["lightline"]="https://github.com/itchyny/lightline.vim"
 # Rainbow parentheses
 PLUGINS["rainbow-paren"]="https://github.com/luochen1990/rainbow.git"
 
+# Pug syntax (express js templating engine)
+PLUGINS["pug"]="https://github.com/digitaltoad/vim-pug.git"
+
 DOTFILES=`pwd`
 DIR="${DOTFILES}/symlink/.vim"
 GIT="${DOTFILES}/tmp/vim-git"
