@@ -2,9 +2,11 @@ function agentize () {
     INFO="\e[1m\e[93m"
     RESET="\e[0m"
     echo -e "${INFO}--->  Entering ssh-agent${RESET}"
-    IS_AGENT=1 ssh-agent bash 
+    ssh-agent bash 
 }
 
-if [ $IS_AGENT ]; then
-    ssh-add ~/.ssh/id_rsa
+if [ $(ps -u $(whoami) | grep ssh-agent | wc -l) -gt 0 ]; then
+    if [ "$(ssh-add -l)" == "The agent has no identities." ] ; then
+        ssh-add ~/.ssh/id_rsa
+    fi
 fi
