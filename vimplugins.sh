@@ -21,13 +21,8 @@ PLUGINS["auto-pairs"]="https://github.com/jiangmiao/auto-pairs"
 # Status bar
 PLUGINS["lightline"]="https://github.com/itchyny/lightline.vim"
 
-if ping -c 1 github.com &>/dev/null; then
-    echo -e $(info "Gathering vim plugins")
-else
-    echo -e $(err "Cannot connect to github, skipping.")
-    exit
-fi
-
+# Rainbow parentheses
+PLUGINS["rainbow-paren"]="https://github.com/luochen1990/rainbow.git"
 
 DOTFILES=`pwd`
 DIR="${DOTFILES}/symlink/.vim"
@@ -36,21 +31,29 @@ GIT="${DOTFILES}/tmp/vim-git"
 mkdir -p ${DIR}
 mkdir -p ${GIT}
 
+
 cd ${GIT}
 git init
-for remote in $(git remote); do
-    if [ !${PLUGINS[$remote]} ]; then
-        git remote remove $remote
-    else
-        git remote update $remote
-        git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master
-    fi
-done
-for plugin in ${!PLUGINS[*]}; do
-    git remote add $plugin ${PLUGINS[$plugin]}
-    git fetch --depth=1 -n -q $plugin
+
+if ping -c 1 github.com &>/dev/null; then
+    echo -e $(info "Gathering vim plugins")
+    for remote in $(git remote); do
+        if [ !${PLUGINS[$remote]} ]; then
+            git remote remove $remote
+        else
+            git remote update $remote
+            git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master
+        fi
+    done
+    for plugin in ${!PLUGINS[*]}; do
+        git remote add $plugin ${PLUGINS[$plugin]}
+        git fetch --depth=1 -n -q $plugin
         git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $plugin/master
-done
+    done
+else
+    echo -e $(err "Cannot connect to github, skipping.")
+    exit
+fi
 
 for dir in *; do
     if [ -d $dir ]; then

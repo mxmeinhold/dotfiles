@@ -95,3 +95,6 @@ set ttimeoutlen=50  " Faster updating
 
 " AutoPairs
 let g:AutoPairsFlyMode = 1 " Enable fly mode
+
+" Rainbow parentheses
+let g:rainbow_active = 1
