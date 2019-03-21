@@ -5,8 +5,6 @@ function agentize () {
     ssh-agent bash 
 }
 
-if [ $(ps -u $(whoami) | grep ssh-agent | wc -l) -gt 0 ]; then
-    if [ "$(ssh-add -l)" == "The agent has no identities." ] ; then
-        ssh-add ~/.ssh/id_rsa
-    fi
+if [ "$(ssh-add -l 2> /dev/null)" == "The agent has no identities." ] ; then
+    ssh-add ~/.ssh/id_rsa
 fi
