@@ -30,6 +30,9 @@ for filename in */*.symlink; do
     ln -sfn ${dir}/symlink/.`basename $filename .symlink` ~/.`basename $filename .symlink`
 done
 
+# Delet compiled promptrc
+rm prompt/promptrc.symlink
+
 # Aliases
 for filename in */*.aliases; do
     if [ -f ${filename}.local ]; then
