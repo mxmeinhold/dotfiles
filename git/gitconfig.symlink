@@ -13,3 +13,8 @@
     editor = vim
 [alias]
     graph = log --oneline --graph --all
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = mxmeinhold@gmail.com
