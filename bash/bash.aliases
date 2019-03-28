@@ -7,6 +7,8 @@ alias l='ls'
 
 alias less='less -R'
 
+alias space='du -shcx'
+
 # Python
 alias venv='python3 -m virtualenv venv'
 alias activate='source ./venv/bin/activate'
