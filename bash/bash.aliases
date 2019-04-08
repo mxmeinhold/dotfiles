@@ -7,7 +7,7 @@ alias l='ls'
 
 alias less='less -R'
 
-alias space='du -shcx'
+alias space='du -shcx `$(which ls) -A`'
 
 # Python
 alias venv='python3 -m virtualenv venv'
