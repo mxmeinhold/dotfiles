@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 INFO="\e[1m\e[93m"
 SUBINFO="\e[1m\e[92m"

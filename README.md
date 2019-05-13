@@ -1,5 +1,5 @@
 ## .dotfiles
-Configuration for bash and/or other shells and shell tools (on Ubuntu and MacOS primarily)
+Configuration for bash and/or other shells and shell tools on macOS.
 
 The principle here is to separate dotfiles topically to make them easier to sort through, organise, and edit. When we want to produce our final dotfiles, we append everything together and symlink it into the homedir.
 

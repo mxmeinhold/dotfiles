@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 INFO="\e[1m\e[93m"
 RESET="\e[0m"

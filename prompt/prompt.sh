@@ -20,7 +20,3 @@ function prompt_std_ps1 {
 
 # TODO temp until we have git.
 PS1=`prompt_std_ps1`
-
-if [ "$(ssh-add -l 2> /dev/null)" ]; then
-    PS1="$(prompt_section '!!!' bright_white bright_red green)$PS1"
-fi
