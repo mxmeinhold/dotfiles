@@ -27,6 +27,12 @@ PLUGINS["rainbow-paren"]="https://github.com/luochen1990/rainbow.git"
 # Pug syntax (express js templating engine)
 PLUGINS["pug"]="https://github.com/digitaltoad/vim-pug.git"
 
+# Vim table mode for quick table formatting
+PLUGINS["table-mode"]="https://github.com/dhruvasagar/vim-table-mode.git"
+
+# Tool for computing math without needing to leave vim
+PLUGINS["how-much"]="https://github.com/sk1418/HowMuch.git"
+
 DOTFILES=`pwd`
 DIR="${DOTFILES}/symlink/.vim"
 GIT="${DOTFILES}/tmp/vim-git"

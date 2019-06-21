@@ -98,3 +98,9 @@ let g:AutoPairsFlyMode = 1 " Enable fly mode
 
 " Rainbow parentheses
 let g:rainbow_active = 1
+
+" HowMuch
+"The floating point size of the result:
+let g:HowMuch_scale = 9 
+"the engine order for auto-calculation
+let g:HowMuch_auto_engines = ['py', 'vim', 'bc']
