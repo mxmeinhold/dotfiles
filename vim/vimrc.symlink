@@ -5,6 +5,9 @@
 set nocompatible	" Use Vim defaults instead of 100% vi compatibility
 set backspace=2		" more powerful backspacing
 
+set wildmenu                " Autocomplete preview
+set wildmode=longest:full   " Complete to longest common completion
+
 filetype plugin indent on
 
 " Don't write backup file if vim is being called by "crontab -e"
