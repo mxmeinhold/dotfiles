@@ -13,6 +13,7 @@
     editor = vim
 [alias]
     graph = log --oneline --graph --all
+	full-graph = log --all --graph --decorate --pretty=format:\"%C(auto)%h%C(reset) - %C(cyan)%s%C(reset) %C(green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(bold black) Author: %an <%ae> %ad%n%C(bold black) Committer %cn <%ce> %cd%C(reset)\"
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpserverport = 587
