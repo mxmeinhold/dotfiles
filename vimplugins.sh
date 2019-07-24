@@ -1,11 +1,16 @@
 #!/bin/bash
 
 INFO="\e[1m\e[93m"
+SUBINFO="\e[1m\e[92m"
 ERR="\e[1m\e[91m"
 RESET="\e[0m"
 
 function info {
     echo "${INFO}---> $1$RESET"
+}
+
+function subinfo {
+    echo "${SUBINFO} --> $1$RESET"
 }
 
 function err {
@@ -42,7 +47,7 @@ mkdir -p ${GIT}
 
 
 cd ${GIT}
-git init
+git init &>/dev/null
 
 if ping -c 1 github.com &>/dev/null; then
     echo -e $(info "Gathering vim plugins")
@@ -51,13 +56,14 @@ if ping -c 1 github.com &>/dev/null; then
             git remote remove $remote
         else
             git remote update $remote
-            git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master
+            git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master &2>/dev/null
         fi
     done
     for plugin in ${!PLUGINS[*]}; do
+        echo -e $(subinfo "Loading $plugin")
         git remote add $plugin ${PLUGINS[$plugin]}
         git fetch --depth=1 -n -q $plugin
-        git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $plugin/master
+        git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $plugin/master &2>/dev/null
     done
 else
     echo -e $(err "Cannot connect to github, skipping.")
