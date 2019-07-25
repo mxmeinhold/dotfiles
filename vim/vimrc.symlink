@@ -39,9 +39,9 @@ autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 colorc
 autocmd FileType latex,tex,markdown,md,text,gitcommit setlocal spell
 
 " move vertically by visual line
-nnoremap j gj 
+nnoremap j gj
 nnoremap k gk
-vnoremap j gj 
+vnoremap j gj
 vnoremap k gk
 
 "remap B and E to move to beginning/end of line, and unbind the original keys
