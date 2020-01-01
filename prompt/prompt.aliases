@@ -1,5 +1,11 @@
 # Prompt sourcing
 if [ -f ~/.promptrc ]; then
+    if [ -d ~/.git-radar ]; then
+        export PATH=$PATH:$HOME/.git-radar
+        export PROMPT_GIT_RADAR
+    else
+        unset PROMPT_GIT_RADAR
+    fi
     source ~/.promptrc
 fi
 

@@ -24,3 +24,24 @@ PS1=`prompt_std_ps1`
 if [ "$(ssh-add -l 2> /dev/null)" ]; then
     PS1="$(prompt_section '!!!' bright_white bright_red green)$PS1"
 fi
+
+function radar_prompt {
+    local radar_result=`git-radar --bash`
+    if [ -z "$radar_result" ]; then
+        echo -n ""
+    else
+        echo $radar_result
+    fi
+}
+
+# Check if variable is set
+if [ -z ${PROMPT_GIT_RADAR+x} ]; then
+    # fg: bright cyan, bg: purple, next bg: black
+    export GIT_RADAR_COLOR_BRANCH="\\033[0;96m\\033[45m"
+    export GIT_RADAR_COLOR_BRANCH_RESET="\\033[0;35m\\033[100m"
+    export GIT_RADAR_COLOR_LOCAL_RESET="\\033[0;97m\\033[100m"
+    export GIT_RADAR_COLOR_REMOTE_RESET="\\033[0;97m\\033[100m"
+    export GIT_RADAR_COLOR_CHANGES_RESET="\\033[0;97m\\033[100m"
+    export GIT_RADAR_FORMAT="%{${GIT_RADAR_COLOR_BRANCH}git::branch: }\\033[0;97m\\033[100m %{local}%{changes}%{stash}\\033[90m\\033[40m \\033[0m"
+    PROMPT_COMMAND=radar_prompt
+fi

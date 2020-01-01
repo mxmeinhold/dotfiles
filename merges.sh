@@ -1,10 +1,15 @@
 #!/bin/bash
 
+ERR="\e[1m\e[91m"
 INFO="\e[1m\e[93m"
 RESET="\e[0m"
 
 function info {
     echo "${INFO}---> $1$RESET"
+}
+
+function err {
+    echo "${ERR}---> $1$RESET"
 }
 
 dir=`pwd`
@@ -18,10 +23,29 @@ mkdir symlink
 echo -e $(info "Assembling prompt config")
 cat prompt/colour.sh prompt/prompt.sh > prompt/promptrc.symlink
 
+# Git info statusline (git-radar)
+echo -e $(info "Collecting git-radar")
+mkdir -p git/git-radar.symlink
+cd git/git-radar.symlink
+
+git init &>/dev/null
+
+if ping -c 1 github.com &>/dev/null; then
+    if [[ `git remote` == *"git-radar"* ]]; then
+        git remote update git-radar
+    fi
+        git remote add git-radar https://github.com/michaeldfallen/git-radar.git
+        git fetch --depth=1 -n -q git-radar
+        git checkout git-radar/master
+else
+    echo -e $(err "Cannot connect to github, skipping.")
+fi
+cd $dir
+
 # Main Configs
 echo -e $(info "Linking primary config files")
 for filename in */*.symlink; do
-    cp $filename symlink/
+    cp -r $filename symlink/
     if [ -f ${filename}.local ]; then
         cat symlink/`basename $filename` ${filename}.local > symlink/.`basename $filename .symlink`
         rm symlink/`basename $filename`
