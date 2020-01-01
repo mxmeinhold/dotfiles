@@ -15,6 +15,7 @@ fi
 mkdir symlink
 
 # cat prompt files
+echo -e $(info "Assembling prompt config")
 cat prompt/colour.sh prompt/prompt.sh > prompt/promptrc.symlink
 
 # Main Configs
@@ -69,5 +70,6 @@ cat symlink/*.aliases >> symlink/.bash_aliases
 rm symlink/*.aliases
 
 # i3lock script (copied to preserve -x)
+echo -e $(info "Placing i3lock scripts")
 mkdir -p ~/.local/bin
-cp -f i3/fuzzy_lock.sh ~/.local/bin/
+cp -f i3/* ~/.local/bin/
