@@ -113,3 +113,9 @@ fi
 
 # Fix issue with gpg not handling the tty
 export GPG_TTY=$(tty)
+
+# Default EDITOR
+export EDITOR=`which vim`
+
+# Personal bin
+export PATH=~/bin:$PATH
