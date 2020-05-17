@@ -7,7 +7,7 @@ alias l='ls'
 
 alias less='less -R'
 
-alias space='du -shcx `$(which ls) -Ab`'
+alias space='du -shcx $(for file in `/usr/bin/ls -A`; do echo "$file"; done)'
 
 # Python
 alias venv='python3 -m virtualenv venv'
