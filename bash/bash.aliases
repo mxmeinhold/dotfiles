@@ -7,7 +7,12 @@ alias l='ls'
 
 alias less='less -R'
 
-alias space='du -shcx $(for file in `/usr/bin/ls -A`; do echo "$file"; done)'
+function space {
+    old_setting=`shopt -p dotglob`
+    shopt -s dotglob
+    du -shcx *
+    $old_setting
+}
 
 # Python
 alias venv='python3 -m virtualenv venv'
