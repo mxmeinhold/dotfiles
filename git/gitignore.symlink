@@ -8,7 +8,7 @@ node_modules/
 # Windows
 Thumbs.db
 
-# WebStorm
+# Jetbrains
 .idea/
 
 # vi
@@ -17,6 +17,7 @@ Thumbs.db
 # General
 log/
 *.log
+cscope.out
 
 # vim
 *.swp
