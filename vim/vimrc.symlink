@@ -42,6 +42,10 @@ set colorcolumn=80,100,120 " Reference line stopping points
 
 " The default bright red was a bit too harsh for me
 hi ColorColumn ctermbg=8 guibg=Gray 
+hi IncSearch ctermbg=10 ctermfg=5
+hi Search ctermfg=254 ctermbg=12
+hi DiffDelete ctermfg=8 ctermbg=6
+hi SpellLocal ctermfg=13 ctermbg=14
 " }}}
 
 set lazyredraw " Reduce redraws mid macro for preformance
