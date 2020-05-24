@@ -1,22 +1,30 @@
-" Configuration file for vim
-
-" Normally we use vim-extensions. If you want true vi-compatibility
-" remove change the following statements
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-set backspace=2		" more powerful backspacing
-
-set wildmenu                " Autocomplete preview
-set wildmode=longest:full   " Complete to longest common completion
+" Personal vim configuration
+" vim:fdm=marker
+" vim:foldlevel=0
 
 filetype plugin indent on
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start		" more powerful backspacing
 
-" Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
-" Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
-syntax on "enables syntax highlighting
-set nu "enables line numbers
+" Wildmenu {{{
+set wildmenu                " Autocomplete preview
+set wildmode=longest:full   " Complete to longest common completion
+" Ignore these patterns when globbing
+set wildignore+=*.pyc,*.swp
+set wildignore+=**/__pycache/**
+" }}}
+" Backups and Undo {{{
+set backup
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/* " Don't backup private things
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
 
+set undofile " Persist undo across save and reload
+set undodir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" }}}
+" Tabs {{{
 " sets \t length to 4 spaces
 set tabstop=4 
 " sets the tab key to input 4 spaces and backspace to remove 4
@@ -24,20 +32,74 @@ set softtabstop=4
 " handle double indentation
 set shiftwidth=4
 set expandtab "Tabs become spaces
+" }}}
+" Display {{{
+syntax on "enables syntax highlighting
+set nu "enables line numbers
+" Color {{{
+color slate
+set colorcolumn=80,100,120 " Reference line stopping points
 
-" in .asm, set 8 space tabs and a line length warning for COCS
-autocmd FileType asm setlocal tabstop=8 softtabstop=8 shiftwidth=8 colorcolumn=80
+" The default bright red was a bit too harsh for me
+hi ColorColumn ctermbg=8 guibg=Gray 
+" }}}
 
+set lazyredraw " Reduce redraws mid macro for preformance
+
+" When a paragraph goes off the window, draw as much of it as possible
+" Represents cut off lines with '@@@' on the last line of the screen
+set display+=truncate
+" }}}
+" Searching {{{
+set nohlsearch " Don't keep search matches highlighted
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+  set incsearch
+endif
+" }}}
+" Filetype autocmds {{{
+" Assembly {{{
+augroup ft_asm
+    autocmd!
+    " 8 space tabs for COCS
+    autocmd FileType asm setlocal tabstop=8 softtabstop=8 shiftwidth=8
+    " Very aggresively highlight long lines
+    autocmd FileType asm setlocal colorcolumn=81
+    autocmd FileType asm match Error /\%81v.\+/
+augroup END
+" }}}
+" Makefiles {{{
 " in makefiles, don't expand tabs to spaces,
 " since actual tab characters are needed
 autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
-
-" in javascript, json, and yaml files, set 2 space tabs
+" }}}
+" Javascript, JSON, YAML {{{
+" set 2 space tabs
 autocmd FileType javascript,json,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-" enable spellcheck for mostly text filetypes
+" }}}
+" Spellcheck for text sort of files {{{
 autocmd FileType latex,tex,markdown,md,text,gitcommit setlocal spell
+" }}}
+" }}}
+" Folding {{{
+augroup ft_folding
+    autocmd!
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType c setlocal foldmethod=syntax
 
+    " Prevent too deep folding
+    autocmd FileType c,python set foldnestmax=2 foldlevel=2
+
+    " Show folds on the left bar
+    set foldcolumn=1
+
+    " autocmd BufWrite * mkview
+    " autocmd BufRead * silent loadview
+
+    set foldopen+=jump,insert
+augroup END
+" }}}
+" Navigation {{{
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -54,11 +116,6 @@ nnoremap $ <nop>
 nnoremap ^ <nop>
 vnoremap $ <nop>
 vnoremap ^ <nop>
-
-color slate
-
-" Show nonprinting charachters
-" set list
 
 " Pulled from /usr/share/vim/vim81/defaults.vim on arch
 "
@@ -82,28 +139,26 @@ if 1
   augroup END
 
 endif
-
-" Do incremental searching when it's possible to timeout.
-if has('reltime')
-  set incsearch
-endif
-
-
-" Plugin config
-"
-" Lightline
+" }}}
+" Plugin Configuration {{{
+" Lightline {{{
 set laststatus=2 
 set noshowmode      " We don't need to show --INSERT--, since lightline shows it
 set ttimeoutlen=50  " Faster updating
+" }}}
 
-" AutoPairs
+" AutoPairs {{{
 let g:AutoPairsFlyMode = 1 " Enable fly mode
+" }}}
 
-" Rainbow parentheses
+" Rainbow parentheses {{{
 let g:rainbow_active = 1
+" }}}
 
-" HowMuch
+" HowMuch {{{
 "The floating point size of the result:
 let g:HowMuch_scale = 9 
 "the engine order for auto-calculation
 let g:HowMuch_auto_engines = ['py', 'vim', 'bc']
+" }}}
+" }}}

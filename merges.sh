@@ -97,3 +97,6 @@ rm symlink/*.aliases
 echo -e $(info "Placing i3lock scripts")
 mkdir -p ~/.local/bin
 cp -f i3/* ~/.local/bin/
+
+# Vim backup and undo dir
+mkdir -p ~/.vim-tmp
