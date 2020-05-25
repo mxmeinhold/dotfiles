@@ -82,7 +82,10 @@ autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 autocmd FileType javascript,json,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " }}}
 " Spellcheck for text sort of files {{{
-autocmd FileType latex,tex,markdown,md,text,gitcommit setlocal spell
+autocmd FileType latex,tex,markdown,md,text setlocal spell
+" }}}
+" Git Commit {{{
+autocmd FileType gitcommit setlocal spell colorcolumn=51,73
 " }}}
 " }}}
 " Folding {{{
