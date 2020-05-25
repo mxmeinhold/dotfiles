@@ -51,6 +51,13 @@ git init &>/dev/null
 
 if ping -c 1 github.com &>/dev/null; then
     echo -e $(info "Gathering vim plugins")
+
+    # Cscope mappings
+    mkdir -p ${GIT}/plugin
+    cd ${GIT}/plugin
+    wget -qN http://cscope.sourceforge.net/cscope_maps.vim
+    cd ${GIT}
+
     for remote in $(git remote); do
         if [ !${PLUGINS[$remote]} ]; then
             git remote remove $remote
