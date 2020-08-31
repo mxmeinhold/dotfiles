@@ -87,6 +87,13 @@ autocmd FileType latex,tex,markdown,md,text setlocal spell
 " Git Commit {{{
 autocmd FileType gitcommit setlocal spell colorcolumn=51,73
 " }}}
+" Latex {{{
+augroup ft_latex
+    autocmd FileType tex let b:tex_flavor = 'pdflatex'
+    autocmd FileType tex compiler tex
+    autocmd FileType tex set errorformat=%f:%l:\ %m
+augroup END
+" }}}
 " }}}
 " Folding {{{
 augroup ft_folding
