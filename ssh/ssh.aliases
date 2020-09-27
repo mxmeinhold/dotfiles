@@ -5,6 +5,20 @@ function agentize () {
     ssh-agent bash 
 }
 
+function agentize-gpg () {
+    INFO="\e[1m\e[93m"
+    RESET="\e[0m"
+    echo -e "${INFO}--->  Enabling ssh-agent via gpg${RESET}"
+    SSH_AGENT_SETTING="gpg" bash
+}
+
 if [ "$(ssh-add -l 2> /dev/null)" == "The agent has no identities." ] ; then
+    ssh-add ~/.ssh/id_rsa
+fi
+
+if [ "$SSH_AGENT_SETTING" == "gpg" ] ; then
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+    echo UPDATESTARTUPTTY | gpg-connect-agent
     ssh-add ~/.ssh/id_rsa
 fi
