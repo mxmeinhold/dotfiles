@@ -1,5 +1,9 @@
 [commit]
     gpgsign = true
+[fetch]
+	writeCommitGraph = true
+[gc]
+	writeCommitGraph = true
 [gpg]
     program = gpg
 [color]
