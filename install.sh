@@ -30,16 +30,13 @@ cd git/git-radar.symlink
 
 git init &>/dev/null
 
-if ping -c 1 github.com &>/dev/null; then
-    if [[ `git remote` == *"git-radar"* ]]; then
-        git remote update git-radar
-    fi
-        git remote add git-radar https://github.com/michaeldfallen/git-radar.git
-        git fetch --depth=1 -n -q git-radar
-        git checkout git-radar/master
-else
-    echo -e $(err "Cannot connect to github, skipping.")
+if [[ `git remote` == *"git-radar"* ]]; then
+    git remote update git-radar
 fi
+git remote add git-radar https://github.com/michaeldfallen/git-radar.git
+git fetch --depth=1 -n -q git-radar
+git checkout git-radar/master
+
 cd $dir
 
 # Main Configs

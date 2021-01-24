@@ -49,33 +49,28 @@ mkdir -p ${GIT}
 cd ${GIT}
 git init &>/dev/null
 
-if ping -c 1 github.com &>/dev/null; then
-    echo -e $(info "Gathering vim plugins")
+echo -e $(info "Gathering vim plugins")
 
-    # Cscope mappings
-    mkdir -p ${GIT}/plugin
-    cd ${GIT}/plugin
-    wget -qN http://cscope.sourceforge.net/cscope_maps.vim
-    cd ${GIT}
+# Cscope mappings
+mkdir -p ${GIT}/plugin
+cd ${GIT}/plugin
+wget -qN http://cscope.sourceforge.net/cscope_maps.vim
+cd ${GIT}
 
-    for remote in $(git remote); do
-        if [ !${PLUGINS[$remote]} ]; then
-            git remote remove $remote
-        else
-            git remote update $remote
-            git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master &2>/dev/null
-        fi
-    done
-    for plugin in ${!PLUGINS[*]}; do
-        echo -e $(subinfo "Loading $plugin")
-        git remote add $plugin ${PLUGINS[$plugin]}
-        git fetch --depth=1 -n -q $plugin
-        git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $plugin/master &2>/dev/null
-    done
-else
-    echo -e $(err "Cannot connect to github, skipping.")
-    exit
-fi
+for remote in $(git remote); do
+    if [ !${PLUGINS[$remote]} ]; then
+        git remote remove $remote
+    else
+        git remote update $remote
+        git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $remote/master &2>/dev/null
+    fi
+done
+for plugin in ${!PLUGINS[*]}; do
+    echo -e $(subinfo "Loading $plugin")
+    git remote add $plugin ${PLUGINS[$plugin]}
+    git fetch --depth=1 -n -q $plugin
+    git merge --allow-unrelated-histories -s recursive -X ours --no-edit --no-gpg-sign -q $plugin/master &2>/dev/null
+done
 
 for dir in *; do
     if [ -d $dir ]; then
