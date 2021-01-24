@@ -75,6 +75,7 @@ done
 cd $dir
 
 cd symlink/.vim
+mkdir -p ~/.vim
 for vim_dir in *; do
     if [ -f ~/.vim/$vim_dir ] && [ ! -L ~/.vim/$vim_dir ]; then
         mv ~/.vim/$vim_dir ~/.vim/${vim_dir}.d.bak
